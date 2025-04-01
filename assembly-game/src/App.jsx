@@ -1,4 +1,18 @@
+import { languages } from "./languages.js";
+
+
 function App() {
+
+    const langElements=languages.map((item,index)=>{
+        const styles={
+            backgroundColor : item.backgroundColor,
+            color : item.color
+        }
+        return(
+            <span className="lang" key={index} style={styles}>{item.name}</span>
+        )
+    });
+
 
   return (
    <main>
@@ -8,6 +22,9 @@ function App() {
        </header>
        <section className="status">
 
+       </section>
+       <section className="languages">
+           {langElements}
        </section>
 
    </main>

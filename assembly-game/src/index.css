@@ -36,3 +36,19 @@ body{
   background-color: white;
 }
 
+.languages{
+  margin-top: 2rem;
+  max-width: 350px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang{
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+}
+
