@@ -6,6 +6,7 @@ function App() {
 
     const [currentWord, setCurrentWord] = useState("react");
 
+    const keys="abcdefghijklmnopqrstuvwxyz"
 
     const langElements=languages.map((item,index)=>{
         const styles={
@@ -23,6 +24,11 @@ function App() {
         )
     })
 
+    const keyBoard=keys.split("").map((key,index)=> {
+        return(
+            <button key={index} className="keys">{key.toUpperCase()}</button>
+        )
+    })
 
   return (
    <main>
@@ -39,7 +45,9 @@ function App() {
        <section className="letter-box">
            {letters}
        </section>
-
+       <section className="keyboard">
+           {keyBoard}
+       </section>
    </main>
   )
 }
