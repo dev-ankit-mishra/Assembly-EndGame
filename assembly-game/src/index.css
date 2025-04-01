@@ -9,7 +9,6 @@ body{
   background-color: #282726;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   height: 100vh;
 }
@@ -91,5 +90,28 @@ body{
   font-weight: bold;
   cursor: pointer;
 
+}
+
+.game-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game{
+  width: 228px;
+  height: 40px;
+  margin-top: 3rem;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  border: 1px solid #D7D7D7;
+  color: #1E1E1E;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #11B5E5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 

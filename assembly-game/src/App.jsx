@@ -48,6 +48,11 @@ function App() {
        <section className="keyboard">
            {keyBoard}
        </section>
+       <section className="game-button">
+           <button className="game">New Game</button>
+       </section>
+
+
    </main>
   )
 }
