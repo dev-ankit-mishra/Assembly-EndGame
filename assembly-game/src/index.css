@@ -52,3 +52,23 @@ body{
   border-radius: 0.2rem;
 }
 
+.letter-box{
+  max-width: 350px;
+  margin: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+
+}
+
+.word{
+  background-color: #323232;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.2rem;
+  border-bottom: 1px solid #F9F4DA;
+  color: #F9F4DA;
+}
+
+

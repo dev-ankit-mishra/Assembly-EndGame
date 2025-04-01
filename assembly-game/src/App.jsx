@@ -1,7 +1,11 @@
 import { languages } from "./languages.js";
+import { useState } from "react";
 
 
 function App() {
+
+    const [currentWord, setCurrentWord] = useState("react");
+
 
     const langElements=languages.map((item,index)=>{
         const styles={
@@ -12,6 +16,12 @@ function App() {
             <span className="lang" key={index} style={styles}>{item.name}</span>
         )
     });
+
+    const letters=currentWord.split("").map((letter,index)=> {
+        return(
+            <span className="word" key={index}>{letter.toUpperCase()}</span>
+        )
+    })
 
 
   return (
@@ -25,6 +35,9 @@ function App() {
        </section>
        <section className="languages">
            {langElements}
+       </section>
+       <section className="letter-box">
+           {letters}
        </section>
 
    </main>
