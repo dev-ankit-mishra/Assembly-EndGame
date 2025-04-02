@@ -5,6 +5,23 @@ import { useState } from "react";
 function App() {
 
     const [currentWord, setCurrentWord] = useState("react");
+    const [guessWord,setGuessWord] = useState([]);
+
+    const countWrongLetters=guessWord.map((word) => {
+        let count = 0;
+        !currentWord.includes(word) ? count++ : null;
+        return(
+            count
+        )
+    })
+
+    const gameOver=countWrongLetters>=8;
+    const isGameWon=(guessWord.length-countWrongLetters)>=currentWord.length;
+    const isGameLost=(guessWord.length-countWrongLetters)<currentWord.length;
+
+
+    const isCorrect=currentWord.includes(guessWord[guessWord.length-1])
+    const isWrong=!currentWord.includes(guessWord[guessWord.length-1])
 
     const keys="abcdefghijklmnopqrstuvwxyz"
 
@@ -24,9 +41,20 @@ function App() {
         )
     })
 
+    function keyHandler(letter){
+        setGuessWord((prev)=>[...prev,letter]);
+    }
+
+    const keyClassName=clsx("keys",{
+        isCorrect: correct,
+        isWrong: wrong
+    })
+
     const keyBoard=keys.split("").map((key,index)=> {
         return(
-            <button key={index} className="keys">{key.toUpperCase()}</button>
+            <button onClick={()=>keyHandler(key)} key={index} className={keyClassName}>
+                {key.toUpperCase()}
+            </button>
         )
     })
 

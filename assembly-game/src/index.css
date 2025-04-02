@@ -89,7 +89,12 @@ body{
   color: black;
   font-weight: bold;
   cursor: pointer;
-
+}
+.key.correct{
+  background-color: limegreen;
+}
+.key.Wrong{
+  background-color: red;
 }
 
 .game-button{
@@ -106,7 +111,7 @@ body{
   border-radius: 0.4rem;
   border: 1px solid #D7D7D7;
   color: #1E1E1E;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   background-color: #11B5E5;
@@ -114,4 +119,6 @@ body{
   justify-content: center;
   align-items: center;
 }
+
+
 
