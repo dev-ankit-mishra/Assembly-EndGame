@@ -1,7 +1,7 @@
 import { languages } from "./languages.js";
 import { useState } from "react";
 import { clsx } from "clsx"
-
+import {getFarewellText} from "./utils.js";
 
 
 function App() {
@@ -16,6 +16,10 @@ function App() {
     const isGameWon=(guessWord.length-countWrongLetters)>=currentWord.length;
     const isGameLost=countWrongLetters>=8;
     const isGameOver=isGameWon || isGameLost;
+
+
+    const lastLetter=guessWord[guessWord.length-1];
+    const isLastLetterIncorrect=lastLetter && !currentWord.includes(lastLetter);
 
 
     const keys="abcdefghijklmnopqrstuvwxyz"
@@ -61,31 +65,37 @@ function App() {
     })
 
     function gameStatus(){
-        if(!isGameOver){
-            return null
-        }else{
-            if(isGameWon){
-                return(
-                    <>
-                        <h1>You win!</h1>
-                        <p>Well Done!</p>
-                    </>
+        if(!isGameOver && isLastLetterIncorrect){
 
+                return (
+                    <p>{getFarewellText(languages[countWrongLetters].name)}</p>
                 )
-            } else{
-                return(
+
+        }
+        if(isGameWon) {
+            return (
+                <>
+                    <h1>You win!</h1>
+                    <p>Well Done!</p>
+                </>
+
+            )
+        }
+            if(isGameLost) {
+                return (
                     <>
-                    <h1>You Lose!</h1>
-                    <p>Better start Learning Assembly!</p>
+                        <h1>You Lose!</h1>
+                        <p>Better start Learning Assembly!</p>
                     </>
                 )
             }
-        }
+
     }
 
     const statusClassName=clsx("status",{
         isGameWon: isGameWon,
-        isGameLost: isGameLost
+        isGameLost: isGameLost,
+        farewell :!isGameOver && isLastLetterIncorrect
     })
 
   return (

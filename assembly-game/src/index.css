@@ -50,7 +50,9 @@ body{
 .status.isGameLost{
   background-color: red;
 }
-
+.status.farewell{
+  background-color: #11B5E5;
+}
 .languages{
   margin-top: 3rem;
   max-width: 350px;
