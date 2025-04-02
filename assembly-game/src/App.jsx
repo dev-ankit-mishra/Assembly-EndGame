@@ -9,17 +9,13 @@ function App() {
     const [currentWord, setCurrentWord] = useState("react");
     const [guessWord,setGuessWord] = useState([]);
 
-    const countWrongLetters=guessWord.map((word) => {
-        let count = 0;
-        !currentWord.includes(word) ? count++ : null;
-        return(
-            count
-        )
-    })
+    const countWrongLetters=guessWord.filter(letter=>!currentWord.includes(letter)).length
+    console.log(countWrongLetters);
 
-    const gameOver=countWrongLetters>=8;
+
     const isGameWon=(guessWord.length-countWrongLetters)>=currentWord.length;
-    const isGameLost=(guessWord.length-countWrongLetters)<currentWord.length;
+    const isGameLost=countWrongLetters>=8;
+    const gameOver=isGameWon || isGameLost;
 
 
     const keys="abcdefghijklmnopqrstuvwxyz"
@@ -83,7 +79,7 @@ function App() {
            {keyBoard}
        </section>
        <section className="game-button">
-           <button className="game">New Game</button>
+           {gameOver && <button className="game">New Game</button>}
        </section>
 
 
