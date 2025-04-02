@@ -1,5 +1,7 @@
 import { languages } from "./languages.js";
 import { useState } from "react";
+import { clsx } from "clsx"
+
 
 
 function App() {
@@ -20,9 +22,6 @@ function App() {
     const isGameLost=(guessWord.length-countWrongLetters)<currentWord.length;
 
 
-    const isCorrect=currentWord.includes(guessWord[guessWord.length-1])
-    const isWrong=!currentWord.includes(guessWord[guessWord.length-1])
-
     const keys="abcdefghijklmnopqrstuvwxyz"
 
     const langElements=languages.map((item,index)=>{
@@ -42,15 +41,22 @@ function App() {
     })
 
     function keyHandler(letter){
-        setGuessWord((prev)=>[...prev,letter]);
+        setGuessWord((prev)=>(
+          guessWord.includes(letter) ? prev :  [...prev,letter])
+        );
+
     }
 
-    const keyClassName=clsx("keys",{
-        isCorrect: correct,
-        isWrong: wrong
-    })
+
 
     const keyBoard=keys.split("").map((key,index)=> {
+        const isGuessed=guessWord.includes(key);
+        const isCorrect=isGuessed && currentWord.includes(key)
+        const isWrong=isGuessed && !currentWord.includes(key)
+        const keyClassName=clsx("keys",{
+            isCorrect: isCorrect,
+            isWrong: isWrong
+        })
         return(
             <button onClick={()=>keyHandler(key)} key={index} className={keyClassName}>
                 {key.toUpperCase()}

@@ -90,10 +90,10 @@ body{
   font-weight: bold;
   cursor: pointer;
 }
-.key.correct{
+.keys.isCorrect{
   background-color: limegreen;
 }
-.key.Wrong{
+.keys.isWrong{
   background-color: red;
 }
 
