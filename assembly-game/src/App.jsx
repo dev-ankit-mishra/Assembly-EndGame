@@ -36,7 +36,7 @@ function App() {
 
     const letters=currentWord.split("").map((letter,index)=> {
         return(
-            <span className="word" key={index}>{letter.toUpperCase()}</span>
+            <span className="word" key={index}>{guessWord.includes(letter) && letter.toUpperCase()}</span>
         )
     })
 
