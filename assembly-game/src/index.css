@@ -29,10 +29,26 @@ body{
 }
 
 .status{
+  visibility: hidden;
   margin-top: 3rem;
   width: 350px;
   height: 60px;
   background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.status.isGameWon{
+  background-color: limegreen;
+}
+
+.status.isGameLost{
+  background-color: red;
 }
 
 .languages{

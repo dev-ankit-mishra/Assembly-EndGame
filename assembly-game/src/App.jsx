@@ -15,7 +15,7 @@ function App() {
 
     const isGameWon=(guessWord.length-countWrongLetters)>=currentWord.length;
     const isGameLost=countWrongLetters>=8;
-    const gameOver=isGameWon || isGameLost;
+    const isGameOver=isGameWon || isGameLost;
 
 
     const keys="abcdefghijklmnopqrstuvwxyz"
@@ -60,14 +60,42 @@ function App() {
         )
     })
 
+    function gameStatus(){
+        if(!isGameOver){
+            return null
+        }else{
+            if(isGameWon){
+                return(
+                    <>
+                        <h1>You win!</h1>
+                        <p>Well Done!</p>
+                    </>
+
+                )
+            } else{
+                return(
+                    <>
+                    <h1>You Lose!</h1>
+                    <p>Better start Learning Assembly!</p>
+                    </>
+                )
+            }
+        }
+    }
+
+    const statusClassName=clsx("status",{
+        isGameWon: isGameWon,
+        isGameLost: isGameLost
+    })
+
   return (
    <main>
        <header className="app-header">
            <h1>Assembly: EndGame</h1>
            <p>Guess the word  under 8 attempts to keep the programming world safe from assembly!</p>
        </header>
-       <section className="status">
-
+       <section className={statusClassName}>
+           {gameStatus()}
        </section>
        <section className="languages">
            {langElements}
@@ -79,7 +107,7 @@ function App() {
            {keyBoard}
        </section>
        <section className="game-button">
-           {gameOver && <button className="game">New Game</button>}
+           {isGameOver && <button className="game">New Game</button>}
        </section>
 
 
