@@ -113,7 +113,7 @@ function App() {
 
     function handleGame(){
         setGuessWord([])
-        setCurrentWord("")
+        setCurrentWord(getRandomWord())
     }
 
   return (
