@@ -3,6 +3,7 @@ import { useState } from "react";
 import { clsx } from "clsx"
 import {getFarewellText} from "./utils.js";
 import {getRandomWord} from "./utils.js";
+import Confetti from "react-confetti"
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     console.log(getFarewellText(languages[countWrongLetters].name));
 
 
-    const isGameWon=(guessWord.length-countWrongLetters)>=currentWord.length;
+    const isGameWon=currentWord.split("").every(letter=>guessWord.includes(letter));
     const isGameLost=countWrongLetters>=8;
     const isGameOver=isGameWon || isGameLost;
 
@@ -96,7 +97,7 @@ function App() {
         if(isGameWon) {
             return (
                 <>
-                    <h1>You win!</h1>
+                    <h2>You win!</h2>
                     <p>Well Done!</p>
                 </>
 
@@ -105,7 +106,7 @@ function App() {
             if(isGameLost) {
                 return (
                     <>
-                        <h1>You Lose!</h1>
+                        <h2>You Lose!</h2>
                         <p>Better start Learning Assembly!</p>
                     </>
                 )
@@ -126,6 +127,7 @@ function App() {
 
   return (
    <main>
+       {isGameWon && <Confetti />}
        <header className="app-header">
            <h1>Assembly: EndGame</h1>
            <p>Guess the word  under 8 attempts to keep the programming world safe from assembly!</p>
