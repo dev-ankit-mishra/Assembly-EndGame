@@ -166,6 +166,11 @@ body{
   background-color: #EC5D49;
 }
 
+section.keyboard > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5
+}
+
 .game-button{
   display: flex;
   justify-content: center;
