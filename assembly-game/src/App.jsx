@@ -2,15 +2,16 @@ import { languages } from "./languages.js";
 import { useState } from "react";
 import { clsx } from "clsx"
 import {getFarewellText} from "./utils.js";
+import {getRandomWord} from "./utils.js";
 
 
 function App() {
 
-    const [currentWord, setCurrentWord] = useState("react");
+    const [currentWord, setCurrentWord] = useState(getRandomWord);
     const [guessWord,setGuessWord] = useState([]);
 
     const countWrongLetters=guessWord.filter(letter=>!currentWord.includes(letter)).length
-    console.log(countWrongLetters);
+    console.log(getFarewellText(languages[countWrongLetters].name));
 
 
     const isGameWon=(guessWord.length-countWrongLetters)>=currentWord.length;
@@ -24,13 +25,23 @@ function App() {
 
     const keys="abcdefghijklmnopqrstuvwxyz"
 
+
+
+
     const langElements=languages.map((item,index)=>{
+
+        const isLangLost=index<countWrongLetters
+
         const styles={
             backgroundColor : item.backgroundColor,
             color : item.color
         }
+        const langClass=clsx("lang",{
+            lost : isLangLost
+        })
+
         return(
-            <span className="lang" key={index} style={styles}>{item.name}</span>
+            <span className={langClass} key={index} style={styles}>{item.name}</span>
         )
     });
 
@@ -58,7 +69,11 @@ function App() {
             isWrong: isWrong
         })
         return(
-            <button onClick={()=>keyHandler(key)} key={index} className={keyClassName}>
+            <button
+                    disabled={isGameOver}
+                    onClick={()=>keyHandler(key)}
+                    key={index}
+                    className={keyClassName}>
                 {key.toUpperCase()}
             </button>
         )
@@ -66,11 +81,9 @@ function App() {
 
     function gameStatus(){
         if(!isGameOver && isLastLetterIncorrect){
-
                 return (
-                    <p>{getFarewellText(languages[countWrongLetters].name)}</p>
+                    <p>{getFarewellText(languages[countWrongLetters-1].name)}</p>
                 )
-
         }
         if(isGameWon) {
             return (
@@ -98,6 +111,11 @@ function App() {
         farewell :!isGameOver && isLastLetterIncorrect
     })
 
+    function handleGame(){
+        setGuessWord([])
+        setCurrentWord("")
+    }
+
   return (
    <main>
        <header className="app-header">
@@ -117,7 +135,7 @@ function App() {
            {keyBoard}
        </section>
        <section className="game-button">
-           {isGameOver && <button className="game">New Game</button>}
+           {isGameOver && <button className="game" onClick={handleGame}>New Game</button>}
        </section>
 
 

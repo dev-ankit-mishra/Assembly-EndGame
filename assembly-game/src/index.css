@@ -44,14 +44,18 @@ body{
 }
 
 .status.isGameWon{
+  visibility: visible;
   background-color: limegreen;
 }
 
 .status.isGameLost{
+  visibility: visible;
   background-color: red;
 }
 .status.farewell{
+  visibility: visible;
   background-color: #11B5E5;
+  border: 2px white dashed;
 }
 .languages{
   margin-top: 3rem;
@@ -67,6 +71,21 @@ body{
 .lang{
   padding: 0.3rem;
   border-radius: 0.2rem;
+  position: relative;
+}
+
+.lang.lost::before {
+  content: "💀";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .letter-box{
