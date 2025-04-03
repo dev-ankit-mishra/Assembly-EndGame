@@ -109,6 +109,10 @@ body{
   color: #F9F4DA;
 }
 
+.word.missedLetter{
+  color: red;
+}
+
 .keyboard{
   max-width: 350px;
   margin-top: 3rem;

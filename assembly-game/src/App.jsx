@@ -46,8 +46,16 @@ function App() {
     });
 
     const letters=currentWord.split("").map((letter,index)=> {
+        const shouldRevealLetter=isGameLost || guessWord.includes(letter)
+
+        const className=clsx("word",{
+            missedLetter : isGameLost && !guessWord.includes(letter)
+        })
+
         return(
-            <span className="word" key={index}>{guessWord.includes(letter) && letter.toUpperCase()}</span>
+            <span className={className} key={index}>
+                {shouldRevealLetter ? letter.toUpperCase() : ""}
+            </span>
         )
     })
 
